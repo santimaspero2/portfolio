@@ -42,9 +42,9 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Licenciado en Gestión: <span className="text-white">Analytics</span>. 
+          Licenciado en Management: <span className="text-white">Analytics</span>. 
           Desarrollador Fullstack especializado en <span className="text-[#22c55e]">Django</span> y hardware. 
-          Del motor de un 190E al despliegue de infraestructura en la nube.
+          De un teclado mecánico al despliegue de infraestructura en la nube.
         </motion.p>
 
         {/* Botones con los nuevos colores */}
@@ -60,7 +60,7 @@ const Hero = () => {
           </motion.button>
           
           <motion.a 
-            href="https://www.linkedin.com/in/TU_USUARIO"
+            href="https://www.linkedin.com/in/santiago-maspero-castro-74b008243/"
             target="_blank"
             whileHover={{ scale: 1.05, borderColor: "#22c55e" }}
             whileTap={{ scale: 0.95 }}
