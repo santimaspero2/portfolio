@@ -1,26 +1,33 @@
+@import url('https://fonts.cdnfonts.com/css/sansation');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Mapeo de fuentes de Google Fonts */
+  --font-display: var(--font-sora);
+  --font-sans: "Sansation", sans-serif;
+
+  /* Tus colores de marca */
+  --color-british-racing: #004225;
+  --color-esmeralda: #22c55e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Configuraciones base */
+@layer base {
+  body {
+    /* bg-[#0a0a1f] es ese azul profundo que queda genial con el British Racing Green */
+    @apply font-sans antialiased text-slate-300 bg-[#0a0a1f] min-h-screen;
+    margin: 0;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-white;
+  }
+
+  * {
+    @apply border-white/10;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Borramos el bloque ":root" y el "body" final que venían por defecto 
+   porque Tailwind v4 y las Google Fonts ya se encargan de todo. */

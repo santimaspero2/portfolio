@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora } from 'next/font/google';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const sora = Sora({ 
+  subsets: ['latin'],
+  variable: '--font-sora', // Variable para CSS
 });
 
 export const metadata: Metadata = {
@@ -23,18 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className="bg-[#0a0a1a] selection:bg-[#1f1f69] selection:text-white">
-        {/* Capa de ruido o grano sutil (opcional para el toque aesthetic) */}
-        <div className="fixed inset-0 z-[-1] bg-[url('/noise.png')] opacity-[0.03] pointer-events-none"></div>
-        
-        {/* Luces de fondo fijas con tu color #1f1f69 */}
-        <div className="fixed inset-0 z-[-2] overflow-hidden">
-          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-[#1f1f69] blur-[150px] opacity-20"></div>
-          <div className="absolute top-[30%] -right-[10%] w-[35%] h-[35%] rounded-full bg-[#1f1f69] blur-[150px] opacity-10"></div>
-          <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] rounded-full bg-[#1f1f69] blur-[150px] opacity-15"></div>
+    <html lang="es" className={`${sora.variable}`}>
+      <body className="font-sans bg-[#0a0a1f] text-slate-300">
+        {/* Gradiente sutil de fondo */}
+        <div className="fixed inset-0 z-[-1] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#004225]/10 blur-[150px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#14142b]/20 blur-[120px] rounded-full" />
         </div>
-
         {children}
       </body>
     </html>
