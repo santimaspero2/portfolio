@@ -4,11 +4,15 @@ import { projects } from '@/data/projects';
 import { ExternalLink, Code2, Cog, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useLang } from '@/context/LanguageContext';
+import { ui } from '@/data/translations';
 
 const ProjectGrid = () => {
+  const { lang } = useLang();
+
   return (
-    <section id="proyectos" className="bg-[#0a0a1f] py-24 px-6 relative">
-      {/* Patrón de puntos en verde inglés para coherencia con el Hero */}
+    <section id="proyectos" className="bg-[#0a0a1f] py-12 px-6 relative">
+      {/* Patrón de puntos */}
       <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none" 
            style={{ backgroundImage: 'radial-gradient(#004225 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
       </div>
@@ -22,7 +26,7 @@ const ProjectGrid = () => {
           <div className="p-2 bg-[#14142b] border border-[#004225]/50 rounded-lg shadow-[0_0_15px_rgba(0,66,37,0.2)]">
             <Code2 className="text-[#22c55e]" />
           </div>
-          Proyectos Seleccionados
+          {ui.projects.sectionTitle[lang]}
         </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -39,10 +43,10 @@ const ProjectGrid = () => {
                   }}
                   className="relative bg-[#14142b] border border-[#004225]/30 p-8 rounded-xl group overflow-hidden cursor-pointer"
                 >
-                    {/* Glow esmeralda sutil en el fondo al hacer hover */}
+                    {/* Glow hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#22c55e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    {/* La "regla" lateral que se ilumina, muy estilo instrumental de auto */}
+                    {/* Regla lateral */}
                     <div className="absolute left-0 top-0 w-1 h-full bg-[#004225] group-hover:bg-[#22c55e] transition-colors duration-500" />
 
                     <div className="relative z-10">
@@ -60,7 +64,7 @@ const ProjectGrid = () => {
                       </h3>
                       
                       <p className="text-slate-400 text-sm leading-relaxed mb-8 group-hover:text-slate-300 transition-colors">
-                        {project.description}
+                        {lang === 'en' ? project.description_en : project.description}
                       </p>
 
                       <div className="flex flex-wrap gap-2">

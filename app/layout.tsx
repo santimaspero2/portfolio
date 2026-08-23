@@ -1,15 +1,66 @@
 import type { Metadata } from "next";
 import { Sora } from 'next/font/google';
 import "./globals.css";
+import { Providers } from "@/components/Providers";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { Analytics } from "@vercel/analytics/react";
 
 const sora = Sora({ 
   subsets: ['latin'],
-  variable: '--font-sora', // Variable para CSS
+  variable: '--font-sora',
 });
 
+const SITE_URL = "https://santimaspero.dev";
+
 export const metadata: Metadata = {
-  title: "Santiago Maspero",
-  description: "Portfolio de Santiago Maspero, desarrollador web full stack especializado en React, Next.js y Node.js. Explora mis proyectos, habilidades y experiencia en el desarrollo de aplicaciones web modernas.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Santiago Maspero — Fullstack Developer",
+    template: "%s | Santiago Maspero",
+  },
+  description:
+    "Desarrollador Fullstack especializado en Python y TypeScript. Sistemas en producción para más de 300 organizaciones. Management Analytics · Django · React Native · GCP.",
+  authors: [{ name: "Santiago Maspero", url: SITE_URL }],
+  creator: "Santiago Maspero",
+  keywords: [
+    "Santiago Maspero",
+    "Fullstack Developer",
+    "Django",
+    "TypeScript",
+    "React Native",
+    "PostgreSQL",
+    "Google Cloud",
+    "Portfolio",
+    "Software Developer Argentina",
+  ],
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Santiago Maspero",
+    title: "Santiago Maspero — Fullstack Developer",
+    description:
+      "Sistemas en producción para más de 300 organizaciones. Django · TypeScript · React Native · GCP.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Santiago Maspero — Fullstack Developer Portfolio",
+      },
+    ],
+    locale: "es_AR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Santiago Maspero — Fullstack Developer",
+    description:
+      "Sistemas en producción para más de 300 organizaciones. Django · TypeScript · React Native · GCP.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +76,11 @@ export default function RootLayout({
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#004225]/10 blur-[150px] rounded-full" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#14142b]/20 blur-[120px] rounded-full" />
         </div>
-        {children}
+        <Providers>
+          <LanguageToggle />
+          {children}
+        </Providers>
+        <Analytics />
       </body>
     </html>
   );
