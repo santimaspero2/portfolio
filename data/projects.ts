@@ -72,7 +72,7 @@ export const projects: Project[] = [
       "React Native mobile app (iOS & Android)"
     ],
     tags: ["TypeScript", "React Native", "Express", "PostgreSQL", "Redis", "Prisma", "Zod", "Google Cloud"],
-    liveLink: "https://www.mangofinanzas.com",
+    liveLink: "https://mangofinanzas.com",
     mockups: ["/mockups/mango-1.png", "/mockups/mango-2.png", "/mockups/mango-3.png", "/mockups/mango-4.png"],
     type: "software",
   },
