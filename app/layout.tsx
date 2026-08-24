@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "Sistemas en producción para más de 300 organizaciones. Django · TypeScript · React Native · GCP.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/preview.png",
         width: 1200,
         height: 630,
         alt: "Santiago Maspero — Fullstack Developer Portfolio",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "Santiago Maspero — Fullstack Developer",
     description:
       "Sistemas en producción para más de 300 organizaciones. Django · TypeScript · React Native · GCP.",
-    images: ["/og-image.png"],
+    images: ["/preview.png"],
   },
   robots: {
     index: true,
