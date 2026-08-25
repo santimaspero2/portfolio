@@ -4,6 +4,12 @@ import ProyectoDetalleClient from "./ProyectoDetalleClient";
 
 type Props = { params: Promise<{ id: string }> };
 
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: String(project.id),
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const project = projects.find((p) => String(p.id) === String(id));

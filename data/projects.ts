@@ -1,3 +1,11 @@
+export interface ProjectRole {
+  icon: string;
+  name: string;
+  name_en: string;
+  description: string;
+  description_en: string;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -14,6 +22,11 @@ export interface Project {
   liveLink?: string;   // URL pública
   mockups?: string[];  // rutas en /public
   type: 'software' | 'hardware' | 'data';
+  roles?: ProjectRole[];
+  approach?: string;
+  approach_en?: string;
+  architecture?: string;
+  architecture_en?: string;
 }
 
 export const projects: Project[] = [
@@ -45,6 +58,54 @@ export const projects: Project[] = [
     tags: ["Django", "PostgreSQL", "Redis", "Celery", "Google Cloud", "Looker Studio", "Hostinger"],
     mockups: ["/mockups/sadiges-1.png", "/mockups/sadiges-2.png", "/mockups/sadiges-3.png", "/mockups/sadiges-4.png"],
     type: "software",
+    roles: [
+      {
+        icon: "📋",
+        name: "Expedientes",
+        name_en: "Case Files",
+        description: "Gestión y seguimiento del ciclo de vida completo de expedientes del programa",
+        description_en: "Full lifecycle management and tracking of program case files",
+      },
+      {
+        icon: "🏛️",
+        name: "SCOFF",
+        name_en: "SCOFF",
+        description: "Auditoría y control de expedientes, validación de documentación e integridad de datos",
+        description_en: "Case file auditing and control, documentation validation and data integrity checks",
+      },
+      {
+        icon: "🎯",
+        name: "Dirección",
+        name_en: "Management",
+        description: "Supervisión general del programa, acceso a reportes y métricas clave",
+        description_en: "General program oversight, access to reports and key metrics",
+      },
+      {
+        icon: "👥",
+        name: "Referentes",
+        name_en: "Coordinators",
+        description: "Responsables de cada sala cuna, gestionan beneficiarios y documentación local",
+        description_en: "Responsible for each nursery, managing beneficiaries and local documentation",
+      },
+      {
+        icon: "🔧",
+        name: "Equipo Técnico",
+        name_en: "Technical Team",
+        description: "Administración del sistema, soporte a usuarios y mantenimiento de la plataforma",
+        description_en: "System administration, user support and platform maintenance",
+      },
+      {
+        icon: "📦",
+        name: "Cargadores Históricos",
+        name_en: "Legacy Loaders",
+        description: "Migración y carga de datos históricos al nuevo sistema digitalizado",
+        description_en: "Migration and loading of historical data into the new digitized system",
+      },
+    ],
+    approach: "Desarrollado con metodología MVP iterativa: el sistema se deployó a producción apenas tuvo funcionalidad mínima viable y se fue iterando sobre feedback real del personal del programa. Cada ciclo sumaba módulos —expedientes, padrones, pagos, escaneo de DNI— hasta llegar al sistema completo que opera hoy.",
+    approach_en: "Developed using iterative MVP methodology: the system was deployed to production as soon as it had minimum viable functionality, then iterated based on real feedback from program staff. Each cycle added modules — case files, payrolls, payments, ID scanning — until reaching the complete system operating today.",
+    architecture: "Arquitectura monolítica Django con apps modulares: expedientes, salas, beneficiarios, padrones, pagos y auditoría. Celery + Redis para generación masiva de documentos en segundo plano. PostgreSQL como base de datos principal. Desplegado en VPS de Hostinger con integración a Google Cloud para Looker Studio.",
+    architecture_en: "Django monolithic architecture with modular apps: case files, rooms, beneficiaries, payrolls, payments and auditing. Celery + Redis for bulk document generation in the background. PostgreSQL as the main database. Deployed on a Hostinger VPS with Google Cloud integration for Looker Studio.",
   },
   {
     id: 2,
@@ -75,6 +136,19 @@ export const projects: Project[] = [
     liveLink: "https://mangofinanzas.com",
     mockups: ["/mockups/mango-1.png", "/mockups/mango-2.png", "/mockups/mango-3.png", "/mockups/mango-4.png"],
     type: "software",
+    roles: [
+      {
+        icon: "👤",
+        name: "Usuario",
+        name_en: "User",
+        description: "Gestiona gastos, ingresos, presupuestos, suscripciones y análisis financiero desde web y móvil",
+        description_en: "Manages expenses, income, budgets, subscriptions and financial analysis from web and mobile",
+      },
+    ],
+    approach: "Desarrollado con metodología MVP iterativa: la primera versión se deployó a producción desde el día uno y se fue puliendo con uso real. Arrancó en Django, se migró a TypeScript por rendimiento, y cada feature nueva se validó con usuarios reales antes de seguir.",
+    approach_en: "Developed using iterative MVP methodology: the first version was deployed to production from day one and refined through real usage. Started in Django, migrated to TypeScript for performance, and every new feature was validated with real users before moving on.",
+    architecture: "Full-stack TypeScript end-to-end: Express + Prisma + Zod en backend, React Native para la app móvil (iOS & Android), Next.js para la web. PostgreSQL como base de datos, Redis para caché y sesiones. Desplegado en Railway con integración a Google Cloud.",
+    architecture_en: "End-to-end TypeScript full-stack: Express + Prisma + Zod on the backend, React Native for the mobile app (iOS & Android), Next.js for the web. PostgreSQL as the database, Redis for caching and sessions. Deployed on Railway with Google Cloud integration.",
   },
   {
     id: 3,
