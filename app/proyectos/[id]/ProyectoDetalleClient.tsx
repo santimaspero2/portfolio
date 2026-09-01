@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useLang } from '@/context/LanguageContext';
 import { ui } from '@/data/translations';
+import { getAssetPath } from '@/utils/path';
 
 /* ── Reusable section heading ── */
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
@@ -64,7 +65,7 @@ export default function ProyectoDetalleClient({ params }: { params: Promise<{ id
 
         {mockups[0] && (
           <div className="absolute inset-0 opacity-10">
-            <Image src={mockups[0]} alt="" fill className="object-cover object-top" />
+            <Image src={getAssetPath(mockups[0])} alt="" fill className="object-cover object-top" />
           </div>
         )}
 
@@ -286,7 +287,7 @@ export default function ProyectoDetalleClient({ params }: { params: Promise<{ id
                       transition={{ duration: 0.25 }}
                     >
                       <Image
-                        src={mockups[activeImg]}
+                        src={getAssetPath(mockups[activeImg])}
                         alt={`${project.title} screenshot ${activeImg + 1}`}
                         width={1200}
                         height={700}
@@ -307,7 +308,7 @@ export default function ProyectoDetalleClient({ params }: { params: Promise<{ id
                             : 'border-[#004225]/30 opacity-50 hover:opacity-80'
                         }`}
                       >
-                        <Image src={src} alt={`thumb ${i + 1}`} fill className="object-cover object-top" />
+                        <Image src={getAssetPath(src)} alt={`thumb ${i + 1}`} fill className="object-cover object-top" />
                       </button>
                     ))}
                   </div>

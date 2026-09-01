@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Terminal, Database, Code2, Box, Layout, Mail, FileDown } from 'lucide-react';
 import { useLang } from '@/context/LanguageContext';
 import { ui } from '@/data/translations';
+import { getAssetPath } from '@/utils/path';
 
 const Hero = () => {
   const { lang } = useLang();
@@ -112,7 +113,7 @@ const Hero = () => {
           </motion.a>
 
           <motion.a
-            href={ui.hero.cvFile[lang]}
+            href={getAssetPath(ui.hero.cvFile[lang])}
             download
             whileHover={{ scale: 1.05, boxShadow: "0 0 16px rgba(34,197,94,0.15)" }}
             whileTap={{ scale: 0.95 }}
