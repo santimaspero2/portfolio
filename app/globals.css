@@ -6,28 +6,34 @@
   --font-display: var(--font-sora);
   --font-sans: "Sansation", sans-serif;
 
-  /* Tus colores de marca */
-  --color-british-racing: #004225;
-  --color-esmeralda: #22c55e;
+  /* Paleta Mango Finanzas */
+  --color-mango: #F26A1E;       /* naranja mango */
+  --color-mango-dark: #D24E08;  /* mango-600 (botón primario) */
+  --color-grape: #7C3AED;       /* violeta */
+  --color-grape-soft: #8b5cf6;
+  --color-surface: #FBF7F1;     /* surface-warm */
+  --color-app: #FFF9F3;         /* fondo: naranja clarísimo, casi blanco */
+  --color-warm: #fff7ed;        /* naranja ultra-suave */
+  --color-line: #F0E7DA;        /* bordes */
+  --color-ink: #20233A;         /* texto principal */
+  --color-body: #4b5563;
+  --color-muted: #6C6E80;
+  --color-label: #9ca3af;
 }
 
 /* Configuraciones base */
 @layer base {
   body {
-    /* bg-[#0a0a1f] es ese azul profundo que queda genial con el British Racing Green */
-    @apply font-sans antialiased text-slate-300 bg-[#0a0a1f] min-h-screen;
+    @apply font-sans antialiased text-body bg-app min-h-screen;
     margin: 0;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display tracking-tight text-white;
+    @apply font-display tracking-tight text-ink;
   }
 
   * {
-    @apply border-white/10;
+    @apply border-line;
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 }
-
-/* Borramos el bloque ":root" y el "body" final que venían por defecto 
-   porque Tailwind v4 y las Google Fonts ya se encargan de todo. */

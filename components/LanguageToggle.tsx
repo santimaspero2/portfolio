@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from '@/context/LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export function LanguageToggle() {
   const { lang, toggle } = useLang();
@@ -11,25 +11,24 @@ export function LanguageToggle() {
     <motion.button
       onClick={toggle}
       title={isEN ? 'Cambiar a Español' : 'Switch to English'}
-      className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-2 rounded-full border border-[#004225]/60 bg-[#0a0a1f]/80 backdrop-blur-md text-xs font-mono font-bold tracking-widest uppercase shadow-lg hover:border-[#22c55e] hover:shadow-[0_0_16px_rgba(34,197,94,0.2)] transition-all duration-300 group"
-      whileHover={{ scale: 1.05 }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4 }}
       whileTap={{ scale: 0.95 }}
+      className="fixed top-5 right-5 z-50 flex p-1 rounded-lg bg-white/80 backdrop-blur border border-line text-sm font-semibold shadow-sm"
     >
-      {/* Pill indicator */}
-      <span className={`transition-colors duration-300 ${!isEN ? 'text-[#22c55e]' : 'text-slate-500'}`}>
-        ES
-      </span>
-      {/* Track */}
-      <div className="relative w-8 h-4 rounded-full border border-[#004225]/60 bg-[#14142b]">
-        <motion.div
-          className="absolute top-0.5 w-3 h-3 rounded-full bg-[#22c55e] shadow-[0_0_6px_rgba(34,197,94,0.6)]"
-          animate={{ left: isEN ? '50%' : '2px' }}
-          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-        />
-      </div>
-      <span className={`transition-colors duration-300 ${isEN ? 'text-[#22c55e]' : 'text-slate-500'}`}>
-        EN
-      </span>
+      {(['es', 'en'] as const).map((l) => (
+        <span key={l} className={`relative px-2.5 py-1 uppercase transition-colors ${lang === l ? 'text-white' : 'text-label hover:text-muted'}`}>
+          {lang === l && (
+            <motion.span
+              layoutId="lang-pill"
+              className="absolute inset-0 rounded-md bg-mango"
+              transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+            />
+          )}
+          <span className="relative">{l}</span>
+        </span>
+      ))}
     </motion.button>
   );
 }

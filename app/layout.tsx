@@ -70,12 +70,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${sora.variable}`}>
-      <body className="font-sans bg-[#0a0a1f] text-slate-300">
-        {/* Gradiente sutil de fondo */}
-        <div className="fixed inset-0 z-[-1] overflow-hidden">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#004225]/10 blur-[150px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#14142b]/20 blur-[120px] rounded-full" />
-        </div>
+      <body className="font-sans bg-app text-body">
         <Providers>
           <LanguageToggle />
           {children}

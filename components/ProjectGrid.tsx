@@ -1,7 +1,7 @@
 "use client";
 
 import { projects } from '@/data/projects';
-import { ExternalLink, Code2, Cog, BarChart3 } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useLang } from '@/context/LanguageContext';
@@ -11,74 +11,66 @@ const ProjectGrid = () => {
   const { lang } = useLang();
 
   return (
-    <section id="proyectos" className="bg-[#0a0a1f] py-12 px-6 relative">
-      {/* Patrón de puntos */}
-      <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#004225 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.h2 
-          initial={{ opacity: 0, x: -20 }}
+    <section id="proyectos" className="px-6 pb-28">
+      <div className="max-w-3xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, x: -12 }}
           whileInView={{ opacity: 1, x: 0 }}
-          className="text-3xl font-bold text-white mb-16 flex items-center gap-3 uppercase tracking-tighter"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-sm font-semibold text-muted mb-6"
         >
-          <div className="p-2 bg-[#14142b] border border-[#004225]/50 rounded-lg shadow-[0_0_15px_rgba(0,66,37,0.2)]">
-            <Code2 className="text-[#22c55e]" />
-          </div>
           {ui.projects.sectionTitle[lang]}
         </motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Link href={`/proyectos/${project.id}`} key={project.id}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: project.id * 0.1 }}
-                whileHover={{ 
-                    y: -12,
-                    transition: { duration: 0.3, ease: "easeOut" } 
-                  }}
-                  className="relative bg-[#14142b] border border-[#004225]/30 p-8 rounded-xl group overflow-hidden cursor-pointer"
-                >
-                    {/* Glow hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#22c55e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {/* Regla lateral */}
-                    <div className="absolute left-0 top-0 w-1 h-full bg-[#004225] group-hover:bg-[#22c55e] transition-colors duration-500" />
 
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-center mb-6">
-                        <div className="p-3 bg-[#0a0a1f] text-[#22c55e] rounded-lg border border-[#004225]/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
-                          {project.type === 'software' && <Code2 size={22} />}
-                          {project.type === 'hardware' && <Cog size={22} />}
-                          {project.type === 'data' && <BarChart3 size={22} />}
-                        </div>
-                        <ExternalLink size={20} className="text-slate-600 group-hover:text-white transition-colors" />
-                      </div>
+        {/* Línea superior que se dibuja al entrar */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="h-px bg-line origin-left"
+        />
+        <ul>
+          {projects.map((project, i) => (
+            <motion.li
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="border-b border-line"
+            >
+              <Link
+                href={`/proyectos/${project.id}`}
+                className="group relative grid grid-cols-[2.5rem_1fr_auto] gap-x-4 py-8 -mx-4 px-4 rounded-xl overflow-hidden"
+              >
+                {/* Fondo que entra desde la izquierda al hacer hover */}
+                <span className="absolute inset-0 bg-warm origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
 
-                      <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-[#22c55e] transition-colors uppercase font-mono">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-slate-400 text-sm leading-relaxed mb-8 group-hover:text-slate-300 transition-colors">
-                        {lang === 'en' ? project.description_en : project.description}
-                      </p>
+                <span className="relative text-sm text-label tabular-nums pt-1.5 group-hover:text-mango transition-colors">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
 
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map(tag => (
-                          <span key={tag} className="px-2.5 py-1 text-[10px] font-mono font-bold bg-[#0a0a1f] text-[#22c55e] border border-[#004225]/40 rounded italic group-hover:border-[#22c55e]/30 transition-colors">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-              </motion.div>
-            </Link>
+                <div className="relative group-hover:translate-x-1.5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-mango transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-body leading-relaxed mb-4">
+                    {lang === 'en' ? project.description_en : project.description}
+                  </p>
+                  <p className="text-sm text-grape">
+                    {project.tags.join(', ')}
+                  </p>
+                </div>
+
+                <span className="relative mt-0.5 w-9 h-9 flex items-center justify-center rounded-full border border-line text-label group-hover:bg-mango group-hover:border-mango group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                  <ArrowUpRight size={18} className="group-hover:rotate-45 transition-transform duration-300" />
+                </span>
+              </Link>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
